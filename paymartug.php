@@ -59,23 +59,23 @@ register_deactivation_hook( __FILE__, 'deactivate_kcdd_plugin' );
 /**
  * Initialize all the core classes of the plugin if WooCommerce Exists
  */
-if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+// if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 	if ( class_exists( 'Inc\\Init' ) ) {
 		Inc\Init::register_services();
 	}			
-} 
+//} 
 /**
  * Admin Notice to require WooCommerce Install
  */
-else {
+// else {
 
-	function my_error_notice() {
-	?>
-		<div class="error notice">
-			<p><?php _e( 'Please Install WooCommerce before activating this plugin.', 'kcdd' ); ?></p>
-		</div>
-	<?php
-	}
+// 	function my_error_notice() {
+// 	?>
+<!-- // 		<div class="error notice">
+// 			<p><?php _e( 'Please Install WooCommerce before activating this plugin.', 'kcdd' ); ?></p>
+// 		</div>
+// 	<?php -->
+// 	}
 
-	add_action( 'admin_notices', 'my_error_notice' );
-}
+// 	add_action( 'admin_notices', 'my_error_notice' );
+// }
