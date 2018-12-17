@@ -70,11 +70,9 @@ register_deactivation_hook( __FILE__, 'deactivate_kcdd_plugin' );
 // else {
 
 // 	function my_error_notice() {
-// 	?>
-<!-- // 		<div class="error notice">
-// 			<p><?php _e( 'Please Install WooCommerce before activating this plugin.', 'kcdd' ); ?></p>
+//		<div class="error notice">
+// 			<p><?php _e( 'Please Install WooCommerce before activating this plugin.', 'kcdd' ); </p>
 // 		</div>
-// 	<?php -->
 // 	}
 
 // 	add_action( 'admin_notices', 'my_error_notice' );
