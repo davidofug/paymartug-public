@@ -15,7 +15,9 @@ final class Init
 		return [
 			Base\Enqueue::class,
 			Custom\Posts::class,
-			Orders\PayDay::class
+			Orders\RequestPayment::class,
+			Data\Table::class,
+			Admin\Page::class
 		];
 	}
 

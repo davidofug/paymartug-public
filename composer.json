@@ -1,12 +1,12 @@
 {
-    "name": "alecaddd/alecaddd-plugin",
-    "description": "Awesome starter plugin example",
+    "name": "bahiirwa/paymartug",
+    "description": "Plugin for e-commerce",
     "type": "project",
     "license": "GPL",
     "authors": [
         {
-            "name": "Alecaddd",
-            "email": "castellani.ale@gmail.com"
+            "name": "Laurence Bahiirwa",
+            "email": "laurence@mediauganda.com"
         }
     ],
     "minimum-stability": "dev",
@@ -14,6 +14,7 @@
         "vlucas/phpdotenv": "^2.5@dev"
     },
     "autoload": {
-        "psr-4": {"Inc\\": "./inc"}
+        "psr-4": {"Inc\\": "./inc"},
+        "files": [ "./inc/Helpers.php" ]
     }
 }
