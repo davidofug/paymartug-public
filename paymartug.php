@@ -3,14 +3,14 @@
  * @package kcdd
  */
 /*
-Plugin Name: Kanzucode Delivery Dispatch
-Plugin URI: http://kanzucode.com
-Description: A Woocommerce addon plugin to help manage Deliveries and Dispatches
+Plugin Name: Pay Mart UG
+Plugin URI: http://paymartug.com
+Description: WordPress plugin will enable you process payments from both momo and visa cards.
 Version: 0.1.0
-Author: Kanzucode
-Author URI: http://kanzucode.com
+Author: paymartug
+Author URI: http://paymartug.com
 License: GPLv2 or later
-Text Domain: kcdd
+Text Domain: paymartug
 */
 
 /*
