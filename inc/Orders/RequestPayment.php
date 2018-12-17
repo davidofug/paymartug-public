@@ -10,7 +10,7 @@ class RequestPayment
 
     public function __construct() {
 
-        add_action( 'plugins_loaded', array ( $this, 'my_plugin_override' ) );
+        // add_action( 'plugins_loaded', array ( $this, 'my_plugin_override' ) );
 
     }
 
