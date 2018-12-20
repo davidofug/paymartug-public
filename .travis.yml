@@ -44,9 +44,6 @@ matrix:
 before_script:
   # Install PHP packages.
   - composer install --ansi --prefer-dist --no-suggest
-script:
-  # Search for PHP syntax errors.
-  - ./vendor/bin/parallel-lint --blame --exclude vendor/ .
 
 # Receive notifications for build results.
 # @link http://docs.travis-ci.com/user/notifications/#Email-notifications
