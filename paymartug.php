@@ -41,12 +41,12 @@ if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
 	$dotenv->load();
 }
 
-define( "LOGIN_URL", getenv( LOGIN_URL ) );
-define( "LOGIN_EMAIL", getenv( LOGIN_EMAIL ) );
-define( "LOGIN_PASS", getenv( LOGIN_PASS ) );
-define( "PAY_URL", getenv( PAY_URL ) );
-define( "account_code", getenv( account_code ) );
-define( "msisdn", getenv( msisdn ) );
+define( 'LOGIN_URL', getenv( LOGIN_URL ) );
+define( 'LOGIN_EMAIL', getenv( LOGIN_EMAIL ) );
+define( 'LOGIN_PASS', getenv( LOGIN_PASS ) );
+define( 'PAY_URL', getenv( PAY_URL ) );
+define( 'account_code', getenv( account_code ) );
+define( 'msisdn', getenv( msisdn ) );
 
 /**
  * The code that runs during plugin activation
