@@ -20,27 +20,26 @@ class Page
             'manage_options', 
             'paymartug/admin.php', 
             array( $this, 'transactions_tables' ), 
-            'dashicons-tickets', 6  );
+            'dashicons-tickets', 
+            6  
+        );
     }
 
     public function transactions_tables(){
         ?>
         <div class="wrap">
-            <h2>Welcome To My Plugin</h2>
+            <h2>Pay Mart UG Transactions</h2>
             <?php 
                 if ( true === ( $transactions_results = get_transient( 'transactions_results' ) ) ) {
                     return;
                 } else {
         
                     $json = json_decode( $transactions_results, true );
-
-                    // echo 'Response:<pre>';
-                    // print_r( $json );
-                    // echo '</pre>'; 
                         
                     echo '<table id="paymart-table" class="display" style="width:100%">';
                         echo '<thead>';
                             echo '<tr>';
+                                echo '<th>No.</th>';
                                 echo '<th>Wallet Name</th>';
                                 echo '<th>transaction_id</th>';
                                 echo '<th>Payee Number</th>';
@@ -53,9 +52,11 @@ class Page
                             echo '<tr>';
                         echo '<thead>';
                         echo '<tbody>';
+                            // $i=1;
                             foreach ($json['data'] as $key => $value) {
 
                                 echo '<tr>';
+                                    // echo '<td>' . $i++ . '</td>';
                                     echo '<td>' . $value['application'] . '</td>';
                                     echo '<td>' . $value['transaction_id'] . '</td>';
                                     echo '<td>' . $value['msisdn'] . '</td>';

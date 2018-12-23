@@ -5,12 +5,24 @@
  */
 namespace Inc\Data;
 
-use Inc\Base\BaseController;
-
 class Table
 {
+    public $pay_email;
 
+	public $pay_password;
+
+    public $collection_account;
+    
     public function __construct() {
+
+        $tempoptions = get_option('widget_widget_paymart')[2];
+
+		if ( !empty( $tempoptions ) ) {
+			foreach ( $tempoptions as $key => $option )
+			$this->pay_email;
+			$this->pay_password;
+			$this->collection_account;
+		}
 
         add_action( 'plugins_loaded', array ( $this, 'my_plugin_override' ) );
     }
@@ -19,9 +31,9 @@ class Table
         
         if ( false === ( $transactions_results = get_transient( 'transactions_results' ) ) ) {
 
-            $passcode = json_encode( array( 'email' => 'laurencebahiirwa@gmail.com', 'password' => 'Kampala123' ) );
+            $passcode = json_encode( array( 'email' => $this->pay_email, 'password' => $this->pay_password ) );
 
-            $response = wp_remote_post( $this->LOGIN_URL, 
+            $response = wp_remote_post( 'https://app.ugmart.ug/api/login', 
                 array ( 
                     'method' => 'POST', 
                     'headers' => array( 'Content-Type' => 'application/json' ), 
