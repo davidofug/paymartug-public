@@ -21,6 +21,6 @@ class Enqueue extends BaseController
 		wp_enqueue_style( 'paymartug-style', $this->plugin_url . 'assets/css/paymartug-style.css' );
 
 		wp_enqueue_script( 'pay-table', $this->plugin_url . 'assets/js/tables.js', array( 'jquery' ), true  );
-		wp_enqueue_script( 'pay-script', $this->plugin_url . 'assets/js/myscript.js', array( 'jquery', 'pay-table' ), true );
+		wp_enqueue_script( 'pay-script', $this->plugin_url . 'assets/js/paymartug.plugin.js', array( 'jquery', 'pay-table' ), true );
 	}
 }
