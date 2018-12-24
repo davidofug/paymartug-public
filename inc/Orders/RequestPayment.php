@@ -18,7 +18,7 @@ class RequestPayment
         
         date_default_timezone_set("Africa/Kampala"); 
 
-        // Get JWT back from login ping
+        // Get JWT back from login ping~
         $passcode = json_encode( array( 'email' => LOGIN_EMAIL, 'password' => LOGIN_PASS ) );
 
         $response = wp_remote_post( LOGIN_URL, 
