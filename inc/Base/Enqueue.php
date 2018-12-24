@@ -16,7 +16,6 @@ class Enqueue extends BaseController
 	}
 	
 	function enqueue() {
-		// enqueue all our scripts
 		wp_enqueue_style( 'paymartug-table', $this->plugin_url . 'assets/css/tables.css' );
 		wp_enqueue_style( 'paymartug-style', $this->plugin_url . 'assets/css/paymartug-style.css' );
 

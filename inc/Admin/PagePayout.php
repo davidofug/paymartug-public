@@ -27,12 +27,13 @@ use Inc\Orders\ProcessPayout;
             <div class="paymartug-container postbox">
                 <p>Current balance: <span class="balance">UGX<?php echo number_format($this->ugMartBalance,2,'.',','); ?>/=</span><a href="#">Refresh</a></p>
                 <h2>Send Payment</h2>
-                <h4>Beneficiary</h4>
+                <h4>Provide beneficiary details.</h4>
+                <p id="heading-errors"></p>
                 <?php 
             
                     if ( $this->ugMartBalance ) :
                 ?>       
-                        <div class="form">
+                        <form class="form" method="post" action="#">
 
                             <div class="field">
                                 <input type="text" id="name" placeholder="Name" />
@@ -49,7 +50,7 @@ use Inc\Orders\ProcessPayout;
                             </div>
 
                             <div class="field">
-                                <textarea id="notes" placeholder="Reason" ></textarea>
+                                <textarea id="reason" placeholder="Reason" ></textarea>
                                 <p class="instructions">Will appear in the transactions history.</p>
                             </div>
             
@@ -61,11 +62,10 @@ use Inc\Orders\ProcessPayout;
                                 <input type="radio" name="send_as"  value="yakka" /> Yakka <br/>
                             </div> -->
                             <div class="field right">
-                                <input type="submit" class="button button-primary button-large" value="Send Now" />
-
+                                <input id="payout" type="submit" class="button button-primary button-large" value="Send Now" />
                             </div>
 
-                        </div>
+                        </form>
                     </div>
                 <?php
                     else:

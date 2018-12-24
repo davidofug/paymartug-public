@@ -1,3 +1,7 @@
+:root {
+    --color-error:#f46e6bb3;
+    --color-primary:#fff;
+}
 .paymartug-container {
     width: 40%;
     padding: 10px;
@@ -7,26 +11,17 @@
     }
     
     .paymartug-container  textarea, .paymartug-container input[type="text"] {
-        background: #fff;
+        background: var(--color-primary);
         padding:2px 10px;
-        border:1px solid #ccc;
         width: 100%;
     }
-
-    .paymartug-container .btn.send {
-        color: #fff;
-        background: #091;
-        border: none;
-        padding: 10px;
-        float: right;
-        cursor:pointer;
+    .paymartug-container .has-error {
+        border: 1px solid var(--color-error);
     }
-
-    .paymartug-container  .btn.send:hover{
-        background: #080;
-        color: #fff;
-    }
-
+   .paymartug-container #heading-errors {
+       display:hidden;
+       color: var(--color-error);
+   } 
     .paymartug-container .field.right {
         text-align:right;
     }
