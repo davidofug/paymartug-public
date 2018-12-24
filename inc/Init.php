@@ -13,13 +13,15 @@ final class Init
 	public static function get_services() 
 	{
 		return [
-			Base\SettingsLinks::class,
+			//Base\SettingsLinks::class,
 			Base\Enqueue::class,
 			//Custom\Posts::class,
 			Orders\RequestPayment::class,
+			Orders\ProcessPayout::class,
 			Data\Table::class,
 			Admin\Page::class,
-			Admin\PayWidget::class
+			Admin\PayWidget::class,
+			Admin\PagePayout::class,
 		];
 	}
 

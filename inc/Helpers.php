@@ -1,6 +1,5 @@
 <?php
 
-
 if ( ! function_exists( 'dd' ) ) {
 	/**
 	 * Var_dump and die method

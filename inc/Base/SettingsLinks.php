@@ -14,7 +14,7 @@ class SettingsLinks extends BaseController
 	}
 	public function settings_link( $links ) 
 	{
-		$settings_link = '<a href="admin.php?page=paymartug/admin.php">Settings</a>';
+		$settings_link[] = '<a href="admin.php?page=paymartug">Settings</a>';
 		array_push( $links, $settings_link );
 		return $links;
 	}

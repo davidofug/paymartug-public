@@ -18,11 +18,15 @@ class Page
             'Pay Mart UG Transactions', 
             'PayMart', 
             'manage_options', 
-            'paymartug/admin.php', 
+            'paymartug', 
             array( $this, 'transactions_tables' ), 
             'dashicons-tickets', 
             6  
         );
+
+        add_action( 'admin_menu', function(){
+            add_submenu_page( 'paymartug', 'Payout', 'Payout','manage_options', 'paymartug-payout');
+        });
     }
 
     public function transactions_tables(){
