@@ -28,15 +28,32 @@ jQuery(document).ready(function() {
   
   jQuery('#payout').on('click', e => {
     e.preventDefault()
+    let errors = 0
     //Check empty on submit
     fields.forEach( field => {
       if(jQuery(field).val() == '' || typeof jQuery(field).val() == 'undefined') {
         jQuery(field).addClass('has-error')
+        error++
         //jQuery(field).sibling('.msg-error').text('Required!')
       } else {
         jQuery(field).removeClass('has-error')
        // jQuery(field).sibling('.msg-error').text('')
+        errors--
       } 
     })
+
+    if(!errors)
+      sendPayMent( /*submitted data*/)
   })
+
+
+  let sendPayMent = data => {
+    fetch(URL, {
+
+    }).then( res => {
+
+    }).catch(error => {
+      console.log( error )
+    })
+  }
 });
