@@ -37,21 +37,25 @@ use Inc\Orders\ProcessPayout;
 
                             <div class="field">
                                 <input type="text" id="name" placeholder="Name" />
+                                <p class="msg-error"></p>
                             </div>
 
                             <div class="field">
                                 <input type="text" id="phone_number" placeholder="Phone number" />
                                 <p class="instructions">MTN Uganda/Airtel Uganda Phone numbers allowed. Format 07XXXXXXXX</p>
+                                <p class="msg-error"></p>
                             </div>
 
                             <div class="field">
                                 <input type="text" id="amount" placeholder="Amount" />
                                 <p class="instructions">Minimum: UGX1,000/=, Maximum: UGX1,000,000/=</p>
+                                <p class="msg-error"></p>
                             </div>
 
                             <div class="field">
                                 <textarea id="reason" placeholder="Reason" ></textarea>
                                 <p class="instructions">Will appear in the transactions history.</p>
+                                <p class="msg-error"></p>
                             </div>
             
                             <!-- <div class="field">
