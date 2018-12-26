@@ -16,6 +16,7 @@ use Inc\Orders\ProcessPayout;
             add_action( 'admin_menu', function(){
                 add_submenu_page( 'paymartug', 'Payout', 'Payout','manage_options', 'paymartug-payout', [$this,'payoutForm']);
             });
+
         }
 
         private function getBalance() {
@@ -27,30 +28,35 @@ use Inc\Orders\ProcessPayout;
             <div class="paymartug-container postbox">
                 <p>Current balance: <span class="balance">UGX<?php echo number_format($this->ugMartBalance,2,'.',','); ?>/=</span><a href="#">Refresh</a></p>
                 <h2>Send Payment</h2>
-                <h4>Beneficiary</h4>
+                <h4>Provide beneficiary details.</h4>
+                <p id="heading-errors"></p>
                 <?php 
             
                     if ( $this->ugMartBalance ) :
                 ?>       
-                        <div class="form">
+                        <form class="form" method="post" action="#">
 
                             <div class="field">
                                 <input type="text" id="name" placeholder="Name" />
+                                <p class="msg-error"></p>
                             </div>
 
                             <div class="field">
                                 <input type="text" id="phone_number" placeholder="Phone number" />
                                 <p class="instructions">MTN Uganda/Airtel Uganda Phone numbers allowed. Format 07XXXXXXXX</p>
+                                <p class="msg-error"></p>
                             </div>
 
                             <div class="field">
                                 <input type="text" id="amount" placeholder="Amount" />
                                 <p class="instructions">Minimum: UGX1,000/=, Maximum: UGX1,000,000/=</p>
+                                <p class="msg-error"></p>
                             </div>
 
                             <div class="field">
-                                <textarea id="notes" placeholder="Reason" ></textarea>
+                                <textarea id="reason" placeholder="Reason" ></textarea>
                                 <p class="instructions">Will appear in the transactions history.</p>
+                                <p class="msg-error"></p>
                             </div>
             
                             <!-- <div class="field">
@@ -61,11 +67,10 @@ use Inc\Orders\ProcessPayout;
                                 <input type="radio" name="send_as"  value="yakka" /> Yakka <br/>
                             </div> -->
                             <div class="field right">
-                                <input type="submit" class="button button-primary button-large" value="Send Now" />
-
+                                <input id="payout" type="submit" class="button button-primary button-large" value="Send Now" />
                             </div>
 
-                        </div>
+                        </form>
                     </div>
                 <?php
                     else:
