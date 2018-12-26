@@ -39,7 +39,7 @@
                             else:
                                 echo json_encode([
                                     'result' => 'error',
-                                    //'msg' => 'UGX'. $amount . 'not allowed!'.(($amount < 1000 ) ? ' It\'s below limit.':' It\'s above limit').'Min:1000/=, Max:1000000/='
+                                    'msg' => 'UGX'. $amount . ' is '.(($amount < 1000 ) ? 'below limit.':'above limit').' Note: UGX1,000 - UGX1,000,000'
                                 ]);
                             endif;
                         else:
