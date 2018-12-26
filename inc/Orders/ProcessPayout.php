@@ -12,15 +12,13 @@
             add_action('admin_footer',[$this,'handleAjax']);
         }
         
-        private function Auth(){
-            return true;
-        }
 
         private function getBalance() {
             return 10000; //Fake balance
         }
 
         public function sendPayment() {
+            $time = time('');
              if( $this->Auth() ) :
                 if(isset($_POST)) :
                     $data = (object) $_POST;
@@ -33,7 +31,8 @@
 
                         if(!empty($name) AND !empty($phone) AND !empty($amount)):
                             if($amount >= 1000 AND $amount <= 1000000 ):
-                                //Insert post
+                                //Insert into options
+                                
                                 //Send to API
                                 echo json_encode(['result' => 'successful']);
                             else:
