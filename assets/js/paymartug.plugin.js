@@ -1,59 +1,47 @@
-jQuery(document).ready(function() {
-  jQuery("#paymart-table").DataTable();
+jQuery(document).ready(function($) {
+  $("#paymart-table").DataTable();
   let limits = {min:1000,max:1000000}
   let fields = ['#name','#phone_number','#amount']
-  //Check empty on field blur
+  //Check empty on fields blur
   fields.forEach(field => {
-    jQuery(field).on('blur', () => {
-      if(jQuery(field).val() == '' )
-        jQuery(field).addClass('has-error')
+    $(field).on('blur', () => {
+      if($(field).val() == '' )
+        $(field).addClass('has-error')
       else
-        jQuery(field).removeClass('has-error')
+        $(field).removeClass('has-error')
 
       if(field == '#phone_number' || field == '#amount' ) {
-        if(!/^\d+$/.test( jQuery(field).val()) )
-          jQuery(field).addClass('has-error')
+        if(!/^\d+$/.test( $(field).val()) )
+          $(field).addClass('has-error')
         else
-          jQuery(field).removeClass('has-error')
+          $(field).removeClass('has-error')
       }
 
       if(field == '#amount') {
-        let amount = parseInt(jQuery(field).val())
+        let amount = parseInt($(field).val())
         if( amount < limits.min || amount > limits.max )
-          jQuery(field).addClass('has-error')
+          $(field).addClass('has-error')
       }
 
     })
   })
   
-  jQuery('#payout').on('click', e => {
+  $('#payout').on('click', e => {
     e.preventDefault()
     let errors = 0
     //Check empty on submit
     fields.forEach( field => {
-      if(jQuery(field).val() == '' || typeof jQuery(field).val() == 'undefined') {
-        jQuery(field).addClass('has-error')
-        error++
-        //jQuery(field).sibling('.msg-error').text('Required!')
+      if($(field).val() == '' || typeof $(field).val() == 'undefined') {
+        $(field).addClass('has-error')
+        errors++
+        //$(field).sibling('.msg-error').text('Required!')
       } else {
-        jQuery(field).removeClass('has-error')
-       // jQuery(field).sibling('.msg-error').text('')
+        $(field).removeClass('has-error')
+       //$(field).sibling('.msg-error').text('')
         errors--
       } 
     })
-
-    if(!errors)
-      sendPayMent( /*submitted data*/)
+    
+    if(errors <=0 ) sendPayment()
   })
-
-
-  let sendPayMent = data => {
-    fetch(URL, {
-
-    }).then( res => {
-
-    }).catch(error => {
-      console.log( error )
-    })
-  }
-});
+})
