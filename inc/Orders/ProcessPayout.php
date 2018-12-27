@@ -31,13 +31,21 @@
 
                         if(!empty($name) AND !empty($phone) AND !empty($amount)):
                             if($amount >= 1000 AND $amount <= 1000000 ):
-                                //Insert into options
-                                wp_post_insert([
-                                    'title' => 
-                                ])
-                                //Send to API
-                                $response = wp_remote_post( $this->API_URL.'/payout', 
-                                    array ( 
+                                $id = wp_post_insert([
+                                    'title' => $this->randomString(8),
+                                    'post_type' => 'paymart-transaction',
+                                    'post_status' => 'publish'
+                                ]);
+
+                                if($id) :
+                                   update_post_meta($id,'name',$name);
+                                   update_post_meta($id,'phone',$phone);
+                                   update_post_meta($id,'reason',$amount);
+                                   update_post_meta($id,'reason',$reason);
+                                endif;
+
+                                $response = wp_remote_post($this->API_URL.'/payout', 
+                                    [ 
                                         'method' => 'POST', 
                                         'headers' => array( 'timeout' => 3000000,'Authorization' => $auth  ), 
                                         'body' => json_encode([
@@ -50,7 +58,7 @@
                                             'description' => !empty($reason) ? $reason : 'Some description',
                                             'recipient_name' => $name
                                         ])
-                                    ) 
+                                    ]
                                 );
                                 if(!is_wp_error($response)) :
                                     var_dump( $response);
