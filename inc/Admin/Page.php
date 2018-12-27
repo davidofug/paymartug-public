@@ -10,23 +10,19 @@ class Page
 {
 
     public function register() {
-        add_action( 'admin_menu', array ( $this, 'my_admin_menu') );
+        add_action( 'admin_menu', array ( $this, 'main_admin_menu') );
     }
 
-    public function my_admin_menu() {
+    public function main_admin_menu() {
         add_menu_page( 
             'Pay Mart UG Transactions', 
-            'PayMart', 
+            'Pay Transactions', 
             'manage_options', 
             'paymartug', 
             array( $this, 'transactions_tables' ), 
             'dashicons-tickets', 
             6  
         );
-
-        add_action( 'admin_menu', function(){
-            add_submenu_page( 'paymartug', 'Payout', 'Payout','manage_options', 'paymartug-payout');
-        });
     }
 
     public function transactions_tables(){

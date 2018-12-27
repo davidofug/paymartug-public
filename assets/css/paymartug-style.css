@@ -2,34 +2,47 @@
     --color-error:#f46e6bb3;
     --color-primary:#fff;
 }
-.paymartug-container {
-    width: 40%;
-    padding: 10px;
-}
-    .paymartug-container .field {
-        margin-bottom: 5px;
-    }
-    
-    .paymartug-container  textarea, .paymartug-container input[type="text"] {
-        background: var(--color-primary);
-        padding:2px 10px;
-        width: 100%;
-    }
-    .paymartug-container .has-error {
-        border: 1px solid var(--color-error);
-    }
-   .paymartug-container #heading-errors {
-       display:hidden;
-       color: var(--color-error);
-   } 
-    .paymartug-container .field.right {
-        text-align:right;
-    }
 
-    .paymartug-container .instructions {
-        font-size: .65rem;
-        font-style: italic;
-        margin:0;
-        margin-bottom: 10px;
-        color: #999;
-    }
+.paymartug-container {
+    padding: 2rem;
+    margin: 2rem;
+    font-size: 16px;
+}
+.paymartug-container .field {
+    margin: 0.5rem 0;
+}
+
+.paymartug-container label {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+}
+
+.paymartug-container textarea, 
+.paymartug-container input[type="text"],
+.paymartug-container input[type="number"],
+.paymartug-container input[type="telephone"] {
+    min-height: 2.5rem;
+    width: 40%;
+    background: var(--color-primary);
+    padding: 2px 10px;
+}
+
+.paymartug-container .has-error {
+    border: 1px solid var(--color-error);
+}
+
+.paymartug-container #heading-errors {
+    display:hidden;
+    color: var(--color-error);
+}
+
+.paymartug-container .instructions {
+    font-size: .75rem;
+    font-style: italic;
+    margin: 5px 0 0 0;
+    margin-bottom: 10px;
+    color: #999;
+}

@@ -64,25 +64,21 @@ class PayWidget extends WP_Widget
 	public function widget( $args, $instance ) {
 		echo $args['before_widget'];
 		if ( ! empty( $instance['title'] ) ) {
-                        echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
-                        ?>
-                                <p>
-                                        <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'paymart' ); ?></label> 
-                                        <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
-
-                                        <?php // echo $this->collection_account; ?>
-                                        
-                                </p>
-                        <?php 
+			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
+			?>
+					<p>
+						<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Amount to give:', 'paymart' ); ?></label> 
+						<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+						<?php // echo $this->collection_account; ?>
+					</p>
+					<p>
+						<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Phone Number:', 'paymart' ); ?></label> 
+						<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+						<?php // echo $this->collection_account; ?>
+					</p>
+			<?php 
 		}
-                echo $args['after_widget'];
-                
-                // LOGIN_URL=https://app
-                // LOGIN_EMAIL=me@me.com
-                // LOGIN_PASS=password
-                // PAY_URL=https://appr
-                // account_code=UGM1449
-                // msisdn=256xxxxxxxxx
+            echo $args['after_widget'];
 	}
 
 	/**
@@ -90,13 +86,6 @@ class PayWidget extends WP_Widget
 	 *
 	 * @param array $instance The widget options
 	 */
-
-         // LOGIN_URL=https://app
-                // LOGIN_EMAIL=me@me.com
-                // LOGIN_PASS=password
-                // PAY_URL=https://appr
-                // account_code=UGM1449
-                // msisdn=256xxxxxxxxx
                 
 	public function form( $instance ) {
 		$title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'PayMart Pay', 'paymart' );
