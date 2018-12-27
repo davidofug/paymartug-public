@@ -10,4 +10,4 @@ Constants           - UpperCase separated with underscore
 Classes             - Camel Case with first letter upper case
 Functions/Methods   - Camelcase with first letter lower case
 variables           - lowercase with underscores
-arrays              -  array() covers below PHP 7.0
+arrays              -  array() covers below supports below PHP 7.0
