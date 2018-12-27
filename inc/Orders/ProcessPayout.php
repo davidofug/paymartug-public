@@ -17,11 +17,12 @@
         }
 
         public function sendPayment() {
-
-             if( !empty($this->getJWTToken())) :
-                $auth = 'Bearer '.$this->getJWTToken();
+            $token = $this->getJWTToken();
+             if( !$token AND !empty($token)) :
+                $auth = 'Bearer '.$token;
                 if(isset($_POST)) :
                     $data = (object) $_POST;
+                    
                     if($data->action == 'payout') :
 
                         $name = sanitize_text_field($data->name);
@@ -31,41 +32,54 @@
 
                         if(!empty($name) AND !empty($phone) AND !empty($amount)):
                             if($amount >= 1000 AND $amount <= 1000000 ):
-                                //Insert into options
-                                wp_post_insert([
-                                    'title' => 
-                                ])
-                                //Send to API
-                                $response = wp_remote_post( $this->API_URL.'/payout', 
-                                    array ( 
-                                        'method' => 'POST', 
-                                        'headers' => array( 'timeout' => 3000000,'Authorization' => $auth  ), 
-                                        'body' => json_encode([
-                                            'account_code' => $this->account_code,
-                                            'transaction_id' => time(),
-                                            'msisdn' => strpos($phone,'256') ? $phone : '256'+$phone,
-                                            'currency'=>'UGX',
-                                            'amount' => $amount,
-                                            'application' => 'Acme',
-                                            'description' => !empty($reason) ? $reason : 'Some description',
-                                            'recipient_name' => $name
-                                        ])
-                                    ) 
-                                );
-                                if(!is_wp_error($response)) :
-                                    var_dump( $response);
-                                    echo json_encode([
-                                        'result' => 'successful',
-                                    ]);
+                                $id = wp_post_insert([
+                                    'title' => $this->randomString(8),
+                                    'post_type' => 'paymart-transaction',
+                                    'post_status' => 'publish'
+                                ]);
+
+                                if($id) :
+                                   update_post_meta($id,'name',$name);
+                                   update_post_meta($id,'phone',$phone);
+                                   update_post_meta($id,'amount',$amount);
+                                   update_post_meta($id,'reason',!empty($reason) ? $reason : 'Payout, UGX'.$amount.' to: '.$name);
+
+                                   $response = wp_remote_post($this->API_URL.'/payout', 
+                                        [ 
+                                            'method' => 'POST', 
+                                            'headers' => ['timeout' => 3000000,'Authorization' => $auth], 
+                                            'body' => json_encode([
+                                                'account_code' => $this->account_code,
+                                                'transaction_id' => time(),
+                                                'msisdn' => strpos($phone,'256') ? $phone : '256'+$phone,
+                                                'currency'=>'UGX',
+                                                'amount' => $amount,
+                                                'application' => 'Acme',
+                                                'description' => !empty($reason) ? $reason : 'Payout, UGX'.$amount.' to: '.$name,
+                                                'recipient_name' => $name
+                                            ])
+                                        ]
+                                    );
+
+                                    if(!is_wp_error($response)) :
+                                        echo json_encode([
+                                            'result' => 'successful',
+                                        ]);
+                                    else:
+                                        echo json_encode([
+                                            'result' => 'error',
+                                            'msg' => $response->get_error_message()
+                                        ]);
+
+                                    endif;
 
                                 else:
                                     echo json_encode([
                                         'result' => 'error',
-                                        'msg' => $response->get_error_message()
+                                        'msg' => 'Technical error: Post can\'t be created'
                                     ]);
-
                                 endif;
-
+                                
                             else:
                                 echo json_encode([
                                     'result' => 'error',
