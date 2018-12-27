@@ -29,6 +29,7 @@ use Inc\Orders\ProcessPayout;
                 <p>Current balance: <span class="balance">UGX<?php echo number_format($this->ugMartBalance,2,'.',','); ?>/=</span><a href="#">Refresh</a></p>
                 <h2>Send Payment</h2>
                 <h4>Provide beneficiary details.</h4>
+                <p id="result"></p>
                 <p id="heading-errors"></p>
                 <?php 
             
