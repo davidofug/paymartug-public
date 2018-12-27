@@ -22,7 +22,6 @@ use Inc\Orders\ProcessPayout;
             add_submenu_page( 'paymartug', 'Pay Out', 'Pay Out', 'manage_options', 'paymartug-payout', [ $this, 'payoutForm' ] );
         }
 
-
         private function getBalance() {
             return 100000; //Change for actual balance
         }
