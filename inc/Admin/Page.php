@@ -16,7 +16,7 @@ class Page
     public function main_admin_menu() {
         add_menu_page( 
             'Pay Mart UG Transactions', 
-            'Pay Transactions', 
+            'Transactions', 
             'manage_options', 
             'paymartug', 
             array( $this, 'transactions_tables' ), 

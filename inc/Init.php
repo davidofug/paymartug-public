@@ -11,10 +11,10 @@ final class Init
 	 * Store all the classes inside an array
 	 * @return array Full list of classes
 	 */
-	public static function get_services() 
+	public static function getServices() 
 	{
 		return [
-			//Base\SettingsLinks::class,
+			Base\SettingsLinks::class,
 			Base\Enqueue::class,
 			//Custom\Posts::class,
 			Orders\RequestPayment::class,
@@ -33,7 +33,7 @@ final class Init
 	 */
 	public static function register_services() 
 	{
-		foreach ( self::get_services() as $class ) {
+		foreach ( self::getServices() as $class ) {
 			$service = self::instantiate( $class );
 			if ( method_exists( $service, 'register' ) ) {
 				$service->register();

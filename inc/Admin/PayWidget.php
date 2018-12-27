@@ -66,16 +66,16 @@ class PayWidget extends WP_Widget
 		if ( ! empty( $instance['title'] ) ) {
 			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
 			?>
-					<p>
-						<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Amount to give:', 'paymart' ); ?></label> 
-						<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
-						<?php // echo $this->collection_account; ?>
-					</p>
-					<p>
-						<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Phone Number:', 'paymart' ); ?></label> 
-						<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
-						<?php // echo $this->collection_account; ?>
-					</p>
+				<p>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Amount to give:', 'paymart' ); ?></label> 
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+					<?php // echo $this->collection_account; ?>
+				</p>
+				<p>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Phone Number:', 'paymart' ); ?></label> 
+					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+					<?php // echo $this->collection_account; ?>
+				</p>
 			<?php 
 		}
             echo $args['after_widget'];
@@ -89,26 +89,17 @@ class PayWidget extends WP_Widget
                 
 	public function form( $instance ) {
 		$title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'PayMart Pay', 'paymart' );
-		$pay_email = ! empty( $instance['pay_email'] ) ? $instance['pay_email'] : '';
-		$pay_password = ! empty( $instance['pay_password'] ) ? $instance['pay_password'] : '' ;
-		$collection_account = ! empty( $instance['collection_account'] ) ? $instance['collection_account'] : '' ;
+		$button_text = ! empty( $instance['button_text'] ) ? $instance['button_text'] : '';
 	?>
 		<p>
-                        <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'paymart' ); ?></label> 
-                        <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'paymart' ); ?></label> 
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
 		</p>
 		<p>
-                        <label for="<?php echo esc_attr( $this->get_field_id( 'pay_email' ) ); ?>"><?php esc_attr_e( 'Account Email:', 'paymart' ); ?></label> 
-                        <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'pay_email' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'pay_email' ) ); ?>" type="email" value="<?php echo esc_attr( $pay_email ); ?>">
+			<label for="<?php echo esc_attr( $this->get_field_id( 'button_text' ) ); ?>"><?php esc_attr_e( 'Button Text:', 'paymart' ); ?></label> 
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'button_text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'button_text' ) ); ?>" type="email" value="<?php echo esc_attr( $button_text ); ?>">
 		</p>
-		<p>
-                        <label for="<?php echo esc_attr( $this->get_field_id( 'pay_password' ) ); ?>"><?php esc_attr_e( 'Account password:', 'paymart' ); ?></label> 
-                        <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'pay_password' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'pay_password' ) ); ?>" type="password" value="<?php echo esc_attr( $pay_password ); ?>">
-		</p>
-		<p>
-                        <label for="<?php echo esc_attr( $this->get_field_id( 'Collection Account Number' ) ); ?>"><?php esc_attr_e( 'collection_account:', 'paymart' ); ?></label> 
-                        <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'collection_account' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'collection_account' ) ); ?>" type="text" value="<?php echo esc_attr( $collection_account ); ?>">
-		</p>
+
 	<?php 
 	}
 
@@ -121,9 +112,7 @@ class PayWidget extends WP_Widget
 	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 		$instance['title'] = sanitize_text_field( $new_instance['title'] );
-		$instance['pay_email'] = sanitize_text_field( $new_instance['pay_email'] );
-		$instance['pay_password'] = sanitize_text_field( $new_instance['pay_password'] );
-		$instance['collection_account'] = sanitize_text_field( $new_instance['collection_account'] );
+		$instance['button_text'] = sanitize_text_field( $new_instance['button_text'] );
 
 		return $instance;
         }
