@@ -63,6 +63,7 @@ class PayWidget extends WP_Widget
 	 */
 	public function widget( $args, $instance ) {
 		echo $args['before_widget'];
+		$button_text = ! empty( $instance['button_text'] ) ? $instance['button_text'] : 'Pay Now';
 		if ( ! empty( $instance['title'] ) ) {
 			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
 			?>
@@ -75,6 +76,16 @@ class PayWidget extends WP_Widget
 					<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Phone Number:', 'paymart' ); ?></label> 
 					<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
 					<?php // echo $this->collection_account; ?>
+				</p>
+				<p>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Payment platform', 'paymart' ); ?></label> 
+					<select name="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>">
+						<option value="mtn_mobile_money">MTN Mobile Money</option>
+						<option value="airtel_mobile_money">Airtel Money</option>
+						<option value="visa_card">VISA / MASTERCARD</option>
+					</select>
+				<p>
+					<input id="payout" type="submit" class="button button-primary button-large" value="<?php echo esc_attr( $button_text ); ?>" />
 				</p>
 			<?php 
 		}
@@ -89,7 +100,7 @@ class PayWidget extends WP_Widget
                 
 	public function form( $instance ) {
 		$title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'PayMart Pay', 'paymart' );
-		$button_text = ! empty( $instance['button_text'] ) ? $instance['button_text'] : '';
+		$button_text = ! empty( $instance['button_text'] ) ? $instance['button_text'] : 'Pay Now';
 	?>
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'paymart' ); ?></label> 
@@ -97,7 +108,7 @@ class PayWidget extends WP_Widget
 		</p>
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'button_text' ) ); ?>"><?php esc_attr_e( 'Button Text:', 'paymart' ); ?></label> 
-			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'button_text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'button_text' ) ); ?>" type="email" value="<?php echo esc_attr( $button_text ); ?>">
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'button_text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'button_text' ) ); ?>" type="text" value="<?php echo esc_attr( $button_text ); ?>">
 		</p>
 
 	<?php 
@@ -115,6 +126,6 @@ class PayWidget extends WP_Widget
 		$instance['button_text'] = sanitize_text_field( $new_instance['button_text'] );
 
 		return $instance;
-        }
+    }
 
 }
