@@ -12,10 +12,10 @@ class BaseController
 
 	public $plugin;
 	public $API_URL = 'https://app.ugmart.ug/api';
-	public $pay_email = '--';
-	public $pay_password = '---';
-	public $collection_account = 'davidofug';
-	public $account_code ='UGM1545038493';
+	public $ACCOUNT_EMIAL;
+	public $ACCOUNT_PASSWORD;
+	public $COLLECTION_ACCOUNT;
+	public $ACCOUNT_CODE;
 
 	public function __construct() {
 		$this->plugin_path = plugin_dir_path( dirname( __FILE__, 2 ) );
@@ -31,6 +31,15 @@ class BaseController
 				$this->collection_account = $option['collection_account'];
 		} */
 
+	}
+
+	protected function customCrypt( $string, $action = 'e' ) {
+
+		$encrypt_method = "AES-256-CBC";
+		$key = hash( 'sha256', 'K7zdju(er`s{Uo7CdF#fX3%aX_S#Rj' );
+		$iv = substr( hash( 'sha256', '-1Amq>8?bR?$Vsh$F}l|eidfm_ENzwA.|""MnnUCpQbv3*`rHr0#9<~PRnf_N>]' ), 0, 16 );
+
+		return ( $action == 'e' ) ? base64_encode( openssl_encrypt( $string, $encrypt_method, $key, 0, $iv ) ) : openssl_decrypt( base64_decode( $string ), $encrypt_method, $key, 0, $iv );
 	}
 
 	public function remoteConnect($url,$data) {
@@ -70,7 +79,7 @@ class BaseController
 		return false;
 	}
 
-	public function randString($length = 10) {
+	public function randomString($length = 10) {
 		$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		$randomString = '';
 		$charactersLength = strlen($characters);
