@@ -78,11 +78,12 @@ class PayWidget extends WP_Widget
 					<?php // echo $this->collection_account; ?>
 				</p>
 				<p>
-					<b>Payment platform</b><br/>
-					<input type="radio" name="send_as"  value="mobile_money" /> MTN Mobile Money <br/>
-					<input type="radio" name="send_as"  value="airtime" /> Airtel Money <br/>
-					<input type="radio" name="send_as"  value="go_tv" /> VISA / MASTERCARD <br/>
-				</div>
+					<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Payment platform', 'paymart' ); ?></label> 
+					<select name="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>">
+						<option value="mtn_mobile_money">MTN Mobile Money</option>
+						<option value="airtel_mobile_money">Airtel Money</option>
+						<option value="visa_card">VISA / MASTERCARD</option>
+					</select>
 				<p>
 					<input id="payout" type="submit" class="button button-primary button-large" value="<?php echo esc_attr( $button_text ); ?>" />
 				</p>
