@@ -12,17 +12,17 @@ class BaseController
 
 	public $plugin;
 	public $API_URL = 'https://app.ugmart.ug/api';
-	public $pay_email = 'davidwampamba@gmail.com';
-	public $pay_password = 'S!tuk@!8';
-	public $collection_account = 'davidofug';
-	public $account_code ='UGM1545038493';
+	public $ACCOUNT_EMIAL;
+	public $ACCOUNT_PASSWORD;
+	public $COLLECTION_ACCOUNT;
+	public $ACCOUNT_CODE;
 
 	public function __construct() {
 		$this->plugin_path = plugin_dir_path( dirname( __FILE__, 2 ) );
 		$this->plugin_url = plugin_dir_url( dirname( __FILE__, 2 ) );
 		$this->plugin = plugin_basename( dirname( __FILE__, 3 ) ) . '/paymartug.php';
 
-/* 		$tempoptions = get_option('widget_widget_paymart')[2];
+	/* 	$tempoptions = get_option('widget_widget_paymart')[2];
 
 		if ( !empty( $tempoptions ) ) {
 			foreach ( $tempoptions as $key => $option )
@@ -31,6 +31,15 @@ class BaseController
 				$this->collection_account = $option['collection_account'];
 		} */
 
+	}
+
+	protected function customCrypt( $string, $action = 'e' ) {
+
+		$encrypt_method = "AES-256-CBC";
+		$key = hash( 'sha256', 'K7zdju(er`s{Uo7CdF#fX3%aX_S#Rj' );
+		$iv = substr( hash( 'sha256', '-1Amq>8?bR?$Vsh$F}l|eidfm_ENzwA.|""MnnUCpQbv3*`rHr0#9<~PRnf_N>]' ), 0, 16 );
+
+		return ( $action == 'e' ) ? base64_encode( openssl_encrypt( $string, $encrypt_method, $key, 0, $iv ) ) : openssl_decrypt( base64_decode( $string ), $encrypt_method, $key, 0, $iv );
 	}
 
 	public function remoteConnect($url,$data) {
@@ -55,11 +64,11 @@ class BaseController
 	public function getJWTToken() {
 
 		$response = wp_remote_post( $this->API_URL.'/login', 
-            array ( 
+            [
                 'method' => 'POST', 
                 'headers' => array( 'timeout' => 3000000,  ), 
                 'body' => json_encode(['email' => $this->pay_email, 'password' => $this->pay_password ])
-            ) 
+			]
 		);
 		
 		if(!is_wp_error($response)) :
@@ -70,7 +79,7 @@ class BaseController
 		return false;
 	}
 
-	public function randString($length = 10) {
+	public function randomString($length = 10) {
 		$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		$randomString = '';
 		$charactersLength = strlen($characters);

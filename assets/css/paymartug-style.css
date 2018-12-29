@@ -1,12 +1,19 @@
 :root {
     --color-error:#f46e6bb3;
     --color-primary:#fff;
+    --color-success:#080;
 }
 
 .paymartug-container {
     padding: 2rem;
     margin: 2rem;
     font-size: 16px;
+}
+.paymartug-container .msg-success {
+    color: var(--color-success);
+}
+.paymartug-container .msg-error {
+    color: var(--color-error);
 }
 .paymartug-container .field {
     margin: 0.5rem 0;
@@ -23,7 +30,9 @@
 .paymartug-container textarea, 
 .paymartug-container input[type="text"],
 .paymartug-container input[type="number"],
-.paymartug-container input[type="telephone"] {
+.paymartug-container input[type="telephone"],
+.paymartug-container input[type="password"],
+.paymartug-container input[type="email"] {
     min-height: 2.5rem;
     width: 40%;
     background: var(--color-primary);

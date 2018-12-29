@@ -10,7 +10,7 @@ class ProcessPayout extends BaseController {
     
     public function register() {
         add_action('wp_ajax_payout',[$this,'sendPayment']);
-        add_action('admin_footer',[$this,'handleAjax']);
+        add_action('admin_footer',[$this,'handlePayoutAjax']);
     }
 
     private function getBalance() {
@@ -50,7 +50,7 @@ class ProcessPayout extends BaseController {
                                         'method' => 'POST', 
                                         'headers' => ['timeout' => 3000000,'Authorization' => $auth], 
                                         'body' => json_encode([
-                                            'account_code' => $this->account_code,
+                                            'account_code' => $this->ACCOUNT_CODE,
                                             'transaction_id' => time(),
                                             'msisdn' => strpos($phone,'256') ? $phone : '256'+$phone,
                                             'currency'=>'UGX',
@@ -116,7 +116,7 @@ class ProcessPayout extends BaseController {
         wp_die();
     }
 
-    public function handleAjax(){ ?>
+    public function handlePayoutAjax(){ ?>
         <script type="text/javascript" >
             let sendPayment = () => {
 
@@ -131,8 +131,8 @@ class ProcessPayout extends BaseController {
                     method:'POST',
                     body:formData
 
-                }).then( res => { res } ).then( data => {
-                    console.log( data )
+                }).then( res => res,json() ).then( data => {
+
                     if( data.result == 'successful' )
                         jQuery('#result').text( 'Payment made successfully' )
                     else

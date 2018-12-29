@@ -16,13 +16,16 @@ class Page
     public function main_admin_menu() {
         add_menu_page( 
             'Pay Mart UG Transactions', 
-            'Transactions', 
+            'Pay Mart UG', 
             'manage_options', 
             'paymartug', 
             array( $this, 'transactions_tables' ), 
             'dashicons-tickets', 
             6  
         );
+
+        add_submenu_page( 'paymartug', 'Pay Mart UG Transactions', 'Transactions', 'manage_options', 'paymartug', array( $this, 'transactions_tables' ) );
+
     }
 
     public function transactions_tables(){
