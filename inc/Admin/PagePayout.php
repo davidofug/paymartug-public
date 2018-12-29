@@ -19,7 +19,7 @@ use Inc\Orders\ProcessPayout;
         }
     
         public function sub_admin_menu() {
-            add_submenu_page( 'paymartug', 'Payout', 'Payout', 'manage_options', 'paymartug-payout', [ $this, 'payoutForm' ] );
+            add_submenu_page( 'paymartug', 'Pay Out', 'Pay Out', 'manage_options', 'paymartug-payout', [ $this, 'payoutForm' ] );
         }
 
         private function getBalance() {
